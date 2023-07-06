@@ -13,7 +13,7 @@ let costs = [.25, .27, .25, .25, .25, .25,
               .20, .25, .30, .25, .24, .25,
               .25, .25, .27, .25, .26, .29];
 
-
+higest = getResult(scores);
 function getResult(scores) {
   let higest = 0;
   for(let i =0; i < scores.length; i++) {
@@ -35,11 +35,23 @@ function getBestIndex(scores, higest) {
   return array;
 }
 
+function getFinishResult(scores, costs, higest) {
+  let cost = 100;
+  let index;
+  for(let i = 0; i < scores.length; i ++) {
+    if(scores[i] == higest && cost > costs[i]) {
+        cost = costs[i];
+        index = i;
+    }
+  }
+  return index;
+}
 
 
-higest = getResult(scores);
-console.log("The best result: " + higest);
+index = getFinishResult(scores, costs, higest);
+console.log("My index " + index);
 array = getBestIndex(scores, higest);
+console.log("The best result: " + higest);
 console.log("New massiv: " + array);
 
 
