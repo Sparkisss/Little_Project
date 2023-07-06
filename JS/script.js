@@ -1,4 +1,4 @@
-/*
+
 let scores = [60, 50, 60, 58, 54, 54,
               58, 50, 52, 54, 48, 69,
               34, 55, 51, 52, 44, 51,
@@ -13,53 +13,38 @@ let costs = [.25, .27, .25, .25, .25, .25,
               .20, .25, .30, .25, .24, .25,
               .25, .25, .27, .25, .26, .29];
 
-let highScore = printAndGetHighScore(scores);
-let bestSolutions = getBestResult(scores, highScore);
-let mostCostEffective = getMostCostEffectiveSolution(scores, costs, highScore);
 
-function printAndGetHighScore(scores) {
-  let output;
-  let highScore = 0;
-  for (i = 0; i < scores.length; i++) {
-    output = "Bubble solution #" + i + " score " + scores[i];
-    console.log(output);
-    if(highScore < scores[i]) {
-      highScore = scores[i];
+function getResult(scores) {
+  let higest = 0;
+  for(let i =0; i < scores.length; i++) {
+    console.log("Index#: " + i + " scores: " + scores[i]);
+    if(higest < scores[i]) {
+      higest = scores[i];
     }
   }
-  return highScore;
+  return higest;
 }
 
-function getBestResult(scores, highScore) {
-  let bestSolutions = [];
-  for(let i = 0; i < scores.length; i++) {
-    if(scores[i] == highScore) {
-      bestSolutions.push(i);
+function getBestIndex(scores, higest) {
+  let array = [];
+  for(i = 0; i < scores.length; i++) {
+    if(higest == scores[i]) {
+      array.push(i);
     }
   }
-  return bestSolutions;
+  return array;
 }
 
-function getMostCostEffectiveSolution(scores, costs, highScore) {
-  let cost = 100;
-  let index;
-  for(let i = 0; i < scores.length; i++) {
-    if(scores[i] == highScore) {
-      if(cost > costs[i]) {
-        index = i;
-        cost = costs[i];
-      }
-    }
-  }
-  return index;
-}
 
-console.log("Bubbles tests:" + scores.length);
-console.log("Higest bubbles score:" + highScore);
-console.log("Solutions with best score " + bestSolutions);
-console.log("Bubble Solution #" + mostCostEffective + " is the most cost effective");
-*/
 
+higest = getResult(scores);
+console.log("The best result: " + higest);
+array = getBestIndex(scores, higest);
+console.log("New massiv: " + array);
+
+
+
+/*
 let taxi = {
   make: "Webville Motors",
   model: "Taxi",
@@ -95,3 +80,4 @@ if(worthALook) {
 }else {
   console.log("You should really past on the " + taxi.make + " " + taxi.model);
 }
+*/
