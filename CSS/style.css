@@ -48,11 +48,38 @@ body{
   margin: 0 auto;
 }
 
+.header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #bb2c2c;
+  min-width: 100%;
+}
+.logo {
+
+}
+.projects {
+
+}
+
+
+
+.contacts {
+}
+
+
+
+
 h1{
   font-size: 40px;
   text-align: center;
-  margin: 50px 0 50px 0;
+  margin: 100px 0 50px 0;
   color: #000;
+
 }
 .main {
   flex: 1 1 auto;

@@ -1,4 +1,4 @@
-
+/*
 let scores = [60, 50, 60, 58, 54, 54,
               58, 50, 52, 54, 48, 69,
               34, 55, 51, 52, 44, 51,
@@ -53,43 +53,48 @@ console.log("My index " + index);
 array = getBestIndex(scores, higest);
 console.log("The best result: " + higest);
 console.log("New massiv: " + array);
-
+*/
 
 
 /*
-let taxi = {
-  make: "Webville Motors",
-  model: "Taxi",
-  year: 1955,
-  color: "yellow",
-  passenger: 4,
-  convertible: false,
-  mileage: 281341,
-};
-
-let fiat = {
-  make: "Fiat",
-  model: "500",
+let chevy = {
+  make: "Chevy",
+  model: "Bel Air",
   year: 1957,
-  color: "blue",
+  color: "red",
   passenger: 2,
   convertible: false,
-  mileage: 88000,
+  mileage: 1021,
+  fuel: 0,
+  started: false,
+  start: function() {
+    if(this.fuel > 0) {
+      this.started = true;
+    }else {
+      console.log("You need fuel up");
+    }
+    
+  },
+  stop: function() {
+    this.started = false;
+  },
+  drive: function() {
+    if(this.started && this.fuel > 0) {
+      console.log("You drive.");
+      this.fuel = this.fuel - 1;
+    }else if(this.fuel <= 0){
+      console.log("You don't have fuel!");
+    }else {
+      console.log("Start your engine!");
+    }
+  },
+  addFuel: function(amount) {
+    this.fuel += amount; 
+  }
 };
 
-function prequal(car) {
-  if(car.mileage > 10000) {
-    return false;
-  }else if(car.year > 1960) {
-    return false;
-  }
-  return true;
-}
-
-let worthALook = prequal(taxi);
-if(worthALook) {
-  console.log("You gotta check out this " + taxi.make + " " + taxi.model);
-}else {
-  console.log("You should really past on the " + taxi.make + " " + taxi.model);
-}
+chevy.start();
+chevy.drive();
+chevy.stop();
+chevy.addFuel(2);
 */
