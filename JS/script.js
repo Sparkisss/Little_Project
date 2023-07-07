@@ -1,4 +1,4 @@
-/*
+
 let scores = [60, 50, 60, 58, 54, 54,
               58, 50, 52, 54, 48, 69,
               34, 55, 51, 52, 44, 51,
@@ -9,51 +9,51 @@ let scores = [60, 50, 60, 58, 54, 54,
 let costs = [.25, .27, .25, .25, .25, .25,
               .33, .31, .25, .29, .27, .22,
               .31, .25, .25, .33, .21, .15,
-              .17, .15, .28, .25, .24, .22,
+              .37, .15, .28, .25, .24, .22,
               .20, .25, .30, .25, .24, .25,
               .25, .25, .27, .25, .26, .29];
 
-higest = getResult(scores);
+
 function getResult(scores) {
-  let higest = 0;
-  for(let i =0; i < scores.length; i++) {
-    console.log("Index#: " + i + " scores: " + scores[i]);
-    if(higest < scores[i]) {
-      higest = scores[i];
+  let highResult = 0;
+  for(let i = 0; i < scores.length; i++) {
+    console.log("Index: " + i + " value: " + scores[i]);;
+    if(highResult < scores[i]) {
+      highResult = scores[i];
     }
   }
-  return higest;
+  return highResult;
 }
-
-function getBestIndex(scores, higest) {
-  let array = [];
+highResult = getResult(scores);
+let array = [];
+function getAttemt (scores, highResult) {
+  
   for(i = 0; i < scores.length; i++) {
-    if(higest == scores[i]) {
+    if(highResult == scores[i]) {
       array.push(i);
     }
   }
   return array;
 }
 
-function getFinishResult(scores, costs, higest) {
-  let cost = 100;
+function getKey(scores, costs, highResult) {
+  let value = 100;
   let index;
-  for(let i = 0; i < scores.length; i ++) {
-    if(scores[i] == higest && cost > costs[i]) {
-        cost = costs[i];
-        index = i;
+  for(i = 0; i < scores.length; i++) {
+    if(scores[i] == highResult && costs[i] < value) {
+      value = costs[i];
+      index = i;
     }
   }
   return index;
 }
+index = getKey(scores, costs, highResult);
+array = getAttemt(scores, highResult);
+console.log("Bubbles tests: " + scores.length);
+console.log("The best result is: " + highResult);
+console.log("The best index: " + array);
+console.log("Index of the best bubble: " + index);
 
-
-index = getFinishResult(scores, costs, higest);
-console.log("My index " + index);
-array = getBestIndex(scores, higest);
-console.log("The best result: " + higest);
-console.log("New massiv: " + array);
-*/
 
 
 /*
