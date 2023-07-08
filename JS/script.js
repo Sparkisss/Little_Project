@@ -54,9 +54,18 @@ console.log("The best result is: " + highResult);
 console.log("The best index: " + array);
 console.log("Index of the best bubble: " + index);
 
-
-
-/*
+function century(year) {
+  // Finish this :)
+  if(year % 100 > 0) {
+    year = Math.floor(year / 100) + 1;
+  }else {
+    year = year / 100;
+  }
+  
+  return year;
+}
+year = century(1900);
+console.log("Century: " + year);
 let chevy = {
   make: "Chevy",
   model: "Bel Air",

@@ -55,11 +55,11 @@ body{
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #d1dcd9;
+  background-color: #584c58;
   min-width: 100%;
   z-index: 5;
   justify-content: space-between;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 .logo {
   margin: 0 50px 0 15px;
@@ -68,53 +68,71 @@ body{
   border-radius: 50%;
   padding: 5px 5px;
 }
+
+.logo img:hover {
+  position: relative;
+  box-shadow: 0 4px 0 0 #000;
+  top: -1px;
+  transition: all 0.3s ease 0s;
+}
+
+.logo img:active {
+  background-color: #ff3d00;
+  box-shadow: 0 1px 0 0 #000;
+  top: 0px;
+  transition: all 0.2s ease 0s;
+}
+
+
 .menu {
   flex-grow: 1;
 }
-
 .menu ul{
   display: flex;
-  
 }
 .menu li {
   margin-right: 30px;
   font-size: 22px;
-  
 }
 .menu li span{
-  color: #000;
+  color: #fff;
 } 
 .menu li:last-child {
   margin: 0;
 }
 .menu a {
+  position: relative;
   padding: 8px 10px;
   border-radius: 8px;
   border: 1px solid #000;
+  border-radius: 80px;
+  box-shadow: 0 1px 0 0 #000;
+  transition: all 0.3s ease 0s;
 }
 .menu a:hover {
   background-color: #2b8c72;
+  box-shadow: 0 4px 0 0 #000;
+  top: -2px;
   transition: all 0.3s ease 0s;
 }
 
-
 .menu a:active {
-  color: #fff;
-  background-color: #ff3d00;
-  border-radius: 8px;
+  box-shadow: 0 1px 0 0 #000;
+  top: 0px;
   transition: all 0.2s ease 0s;
 }
 .contacts {
   font-size: 20px;
   line-height: 24px;
   margin: 0 30px 0 0;
-  border: 1px solid #000;
-  border-radius: 10px;
-  background-color: #b87765;
 }
 .contacts span {
+  margin: 0 20px 0 0;
   padding: 0 10px;
   color: #383230;
+  background-color: #b87765;
+  border: 1px solid #000;
+  border-radius: 10px;
 }
 
 h1{
@@ -132,27 +150,31 @@ h1{
   font-size: 28px;
   margin: 0 0 50px 0;
 }
-.main__list {
-  padding: 0 10px;
-  font-size: 20px;
+.about__row {
+  display: flex;
 }
-.main__list li{
-  margin: 0 0 20px 0;
+
+.about__img {
+  flex: 0 0 33.333%;
+  min-height: 400px;
   position: relative;
-  padding: 0 0 0 50px;
 }
-.main__list li:last-child{
-  margin: 0;
-}
-.main__list li::before{
-  content: '';
-  background: url(../img/icons/3.svg) 0 0 no-repeat;
-  position: absolute;
-  top: -14px;
+.about__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
   left: 0;
-  height: 38px;
-  width: 30px;
+  max-width: 100%;
+  position: absolute;
 }
+.about__text {
+  text-indent: 30px;
+  margin: 0 30px;
+  font-size: 18px;
+  line-height: 26px;
+}
+
 .main__img {
   text-align: center;
   justify-content: center;
@@ -217,3 +239,4 @@ h1{
   border: 6px solid #1e3763;
   transition: all 0.1s ease 0s;
 }
+
