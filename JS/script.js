@@ -1,4 +1,4 @@
-
+/*
 let scores = [60, 50, 60, 58, 54, 54,
               58, 50, 52, 54, 48, 69,
               34, 55, 51, 52, 44, 51,
@@ -107,3 +107,18 @@ chevy.drive();
 chevy.stop();
 chevy.addFuel(2);
 */
+
+var countSheep = function (num){
+  //your code here
+  let count = '';
+  if(num > 0) {
+    for(let i = 0; i <= num; i++) {
+      count += (i + 1) + ' sheep... ';
+    }
+  return count;
+    }else {
+      num = 1;
+    }
+}
+
+console.log (countSheep(3));
