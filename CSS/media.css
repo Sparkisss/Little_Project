@@ -1,0 +1,60 @@
+@media (max-width:1150px) {
+  .header .menu li {
+  margin-right: 20px;
+  font-size: 16px;
+  }
+.header .contacts {
+  font-size: 16px;
+  line-height: 18px;
+  margin: 0 20px 0 0;
+  }
+.item__text {
+  font-size: 12px;
+  }
+  .about__row .about__img {
+  min-height: 350px;
+  }
+  .main .main__img img {
+  max-width: 90%;  
+  }
+} 
+@media (max-width:950px) {
+  .header .menu li {
+  margin-right: 20px;
+  font-size: 14px;
+  }
+.header .contacts {
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 20px 0 0;
+  }
+  .about__row .about__img {
+  min-height: 300px;
+  }
+  .main .main__img img {
+  max-width: 80%;  
+  }
+} 
+@media (max-width:950px) {
+  /* Burger menu */
+} 
+@media (max-width:700px) {
+  .container h1{
+  font-size: 28px;
+  margin: 80px 0 40px 0;
+  }
+  .about__row .main__header {
+  text-align: center;
+  font-size: 18px;
+  margin: 0 0 20px 0;
+  }
+  .about__row .about__text {
+  font-size: 14px;
+  line-height:16px;
+  }
+} 
+
+@keyframes burgerAnimation {
+  from {opacity: 0}
+  to {opacity: 1}
+}
