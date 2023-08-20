@@ -152,6 +152,7 @@ h1{
   left: 0;
   max-width: 100%;
   position: absolute;
+  border-radius: 10px;
 }
 .about__text {
   text-indent: 30px;
