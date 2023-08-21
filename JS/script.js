@@ -106,15 +106,32 @@
 // );
 // console.log(usersObj);
 // object method
-let obj1 = {
-  name: 'Igor',
+// let obj1 = {
+//   name: 'Igor',
+//   info: {
+//     skills: ['html, css'],
+//   },
+// };
+// let obj2 = {
+//   name: 'TIgor',
+//   age: 18,
+// };
+// let newObj = JSON.parse(JSON.stringify(obj2));
+// console.log(newObj);
+
+
+const user = {
+  firstName: 'Denis',
+  lastName: 'Penis',
   info: {
-    skills: ['html, css'],
+    work: 'Easy-peasy',
+    skills: ['html', 'css'],
   },
 };
-let obj2 = {
-  name: 'TIgor',
-  age: 18,
-};
-let newObj = JSON.parse(JSON.stringify(obj2));
-console.log(newObj);
+const {info: {work, skills} } = user;
+
+console.log(work, skills[1]);
+
+const colors = ['white', 'black', 'red', ['key', 'value']];
+const newColors = [...colors];
+console.log(...newColors);
