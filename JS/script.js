@@ -120,18 +120,33 @@
 // console.log(newObj);
 
 
-const user = {
-  firstName: 'Denis',
-  lastName: 'Penis',
-  info: {
-    work: 'Easy-peasy',
-    skills: ['html', 'css'],
-  },
-};
-const {info: {work, skills} } = user;
+// const user = {
+//   firstName: 'Denis',
+//   lastName: 'Penis',
+//   info: {
+//     work: 'Easy-peasy',
+//     skills: ['html', 'css'],
+//   },
+// };
+// const {info: {work, skills} } = user;
 
-console.log(work, skills[1]);
+// console.log(work, skills[1]);
 
-const colors = ['white', 'black', 'red', ['key', 'value']];
-const newColors = [...colors];
-console.log(...newColors);
+// const colors = ['white', 'black', 'red', ['key', 'value']];
+// const newColors = [...colors];
+// console.log(...newColors);
+// console.dir(colors);
+
+const div = document.querySelector('.about__text');
+
+const titles = document.querySelectorAll('h1');
+
+const link = div.querySelector('.link');
+div.classList.add('border');
+console.log(div.classList.contains('border'));
+console.log(div.classList);
+console.log(div.className);
+div.setAttribute('id', 'eager');
+div.id = 'noWar';
+console.log(div.dataset);
+console.groupCollapsed(document.links);

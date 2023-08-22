@@ -226,3 +226,6 @@ h1{
   transition: all 0.1s ease 0s;
 }
 
+.border {
+  border: 10px solid #333;
+}
