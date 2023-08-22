@@ -137,16 +137,26 @@
 // console.log(...newColors);
 // console.dir(colors);
 
-const div = document.querySelector('.about__text');
+// const div = document.querySelector('.about__text');
 
-const titles = document.querySelectorAll('h1');
+// const titles = document.querySelectorAll('h1');
 
-const link = div.querySelector('.link');
-div.classList.add('border');
-console.log(div.classList.contains('border'));
-console.log(div.classList);
-console.log(div.className);
-div.setAttribute('id', 'eager');
-div.id = 'noWar';
-console.log(div.dataset);
-console.groupCollapsed(document.links);
+// const link = div.querySelector('.link');
+// div.classList.add('border');
+// console.log(div.classList.contains('border'));
+// console.log(div.classList);
+// console.log(div.className);
+// div.setAttribute('id', 'eager');
+// div.id = 'noWar';
+// console.log(div.dataset);
+// console.groupCollapsed(document.links);
+
+// Созданиен элемента
+const titles = document.querySelector('h1');
+const span = document.createElement('span');
+span.textContent = '   Apointment';
+span.classList.add('border');
+titles.appendChild(span);
+console.log(span);
+
+// Создание множества элементов
