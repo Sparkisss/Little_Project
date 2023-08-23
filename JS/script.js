@@ -152,11 +152,51 @@
 // console.groupCollapsed(document.links);
 
 // Созданиен элемента
-const titles = document.querySelector('h1');
-const span = document.createElement('span');
-span.textContent = '   Apointment';
-span.classList.add('border');
-titles.appendChild(span);
-console.log(span);
+// const titles = document.querySelector('h1');
+// const span = document.createElement('span');
+// span.textContent = '   Apointment';
+// span.classList.add('border');
+// titles.appendChild(span);
+// console.log(span);
 
-// Создание множества элементов
+// // Создание множества элементов
+// const fragment = document.createDocumentFragment();
+// const colors = ['black', 'red', 'white'];
+// colors.forEach(color => {
+//   const item = document.createElement('div');
+//   item.classList.add('border');
+//   item.style.background = color;
+
+//   item.textContent = color;
+//   fragment.appendChild(item);
+// })
+// document.body.appendChild(fragment);
+
+
+// События основы
+const btn = document.querySelector('.logo');
+const link = document.querySelector('.a');
+const free = document.querySelector('.fristail');
+
+// btn.addEventListener('click', function(e) {
+//   console.log(e);
+// });
+
+// link.addEventListener('click', function(e) {
+//   console.log('click');
+// })
+
+btn.addEventListener('click', e => {
+  const div = document.createElement('div');
+  const nestedBtn = document.createElement('button');
+  div.textContent = Math.random();
+  nestedBtn.textContent = 'button';
+  div.appendChild(nestedBtn);
+  free.appendChild(div);
+});
+
+free.addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON') {
+    console.log('CREAT');
+  }
+});

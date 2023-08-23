@@ -12,6 +12,11 @@ body{
   background-color: rgb(125, 127, 130);
   color: aliceblue;
 }
+button {
+  height: 30px;
+  width: 50px;
+  border: 2px solid #bb2c2c;
+}
 
 .container {
   min-height: 100%;
