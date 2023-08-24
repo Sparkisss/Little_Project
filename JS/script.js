@@ -174,9 +174,9 @@
 
 
 // События основы
-const btn = document.querySelector('.logo');
-const link = document.querySelector('.a');
-const free = document.querySelector('.fristail');
+// const btn = document.querySelector('.logo');
+// const link = document.querySelector('.a');
+// const free = document.querySelector('.fristail');
 
 // btn.addEventListener('click', function(e) {
 //   console.log(e);
@@ -186,17 +186,37 @@ const free = document.querySelector('.fristail');
 //   console.log('click');
 // })
 
+// btn.addEventListener('click', e => {
+//   const div = document.createElement('div');
+//   const nestedBtn = document.createElement('button');
+//   div.textContent = Math.random();
+//   nestedBtn.textContent = 'button';
+//   div.appendChild(nestedBtn);
+//   free.appendChild(div);
+// });
+
+// free.addEventListener('click', e => {
+//   if (e.target.tagName === 'BUTTON') {
+//     console.log('CREAT');
+//   }
+// });
+
+// Всплытие и перехват
+const btn = document.querySelector('.btn');
+const wrap = document.querySelector('.wrap');
+
 btn.addEventListener('click', e => {
-  const div = document.createElement('div');
-  const nestedBtn = document.createElement('button');
-  div.textContent = Math.random();
-  nestedBtn.textContent = 'button';
-  div.appendChild(nestedBtn);
-  free.appendChild(div);
+  // e.stopPropagation();
+  console.log('click - btn');
+});
+wrap.addEventListener('click', e => {
+  console.log('click - wrap');
 });
 
-free.addEventListener('click', e => {
-  if (e.target.tagName === 'BUTTON') {
-    console.log('CREAT');
-  }
-});
+btn.addEventListener('click', e => {
+  // e.stopPropagation();
+  console.log('click - btn');
+}, true);
+wrap.addEventListener('click', e => {
+  console.log('click - wrap');
+}, true);

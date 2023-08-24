@@ -12,11 +12,25 @@ body{
   background-color: rgb(125, 127, 130);
   color: aliceblue;
 }
+
+
 button {
+  margin: 20px;
   height: 30px;
   width: 50px;
   border: 2px solid #bb2c2c;
 }
+.wrap {
+  text-align: center;
+  margin: 20px;
+  height: 100%;
+  width: 100%;
+  border: 2px solid #383030;
+  padding-top: 10px;
+  background-color: #cac852;
+}
+
+
 
 .container {
   min-height: 100%;
