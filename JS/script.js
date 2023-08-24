@@ -202,21 +202,56 @@
 // });
 
 // Всплытие и перехват
+// const btn = document.querySelector('.btn');
+// const wrap = document.querySelector('.wrap');
+
+// btn.addEventListener('click', e => {
+//   // e.stopPropagation();
+//   console.log('click - btn');
+// });
+// wrap.addEventListener('click', e => {
+//   console.log('click - wrap');
+// });
+
+// btn.addEventListener('click', e => {
+//   // e.stopPropagation();
+//   console.log('click - btn');
+// }, true);
+// wrap.addEventListener('click', e => {
+//   console.log('click - wrap');
+// }, true);
+
+// Введение в AJAX
 const btn = document.querySelector('.btn');
 const wrap = document.querySelector('.wrap');
+const explor = document.querySelector('.explor');
+
+function getPosts(callBack) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+  xhr.addEventListener('load', () => {
+    const response = JSON.parse(xhr.responseText);
+    callBack(response);
+}); 
+
+xhr.addEventListener('error', () => {
+  console.log('error');
+  });
+
+xhr.send();
+
+}
 
 btn.addEventListener('click', e => {
-  // e.stopPropagation();
-  console.log('click - btn');
+  const fragment = document.createDocumentFragment();
+  getPosts(response => {
+    response.forEach(post => {
+      const card = document.createElement('div');
+      card.textContent = post.title;
+      card.classList.add('tilt');
+      console.log(card);
+      fragment.appendChild(card);
+    });
+    explor.appendChild(fragment);
+  });
 });
-wrap.addEventListener('click', e => {
-  console.log('click - wrap');
-});
-
-btn.addEventListener('click', e => {
-  // e.stopPropagation();
-  console.log('click - btn');
-}, true);
-wrap.addEventListener('click', e => {
-  console.log('click - wrap');
-}, true);
