@@ -223,7 +223,9 @@
 
 // Введение в AJAX
 const btn = document.querySelector('.btn');
-const wrap = document.querySelector('.wrap');
+const btnGet = document.querySelector('.btn-get-posts');
+const btnAddPost = document.querySelector('.btn-add-posts');
+// const wrap = document.querySelector('.wrap');
 const explor = document.querySelector('.explor');
 
 function getPosts(callBack) {
@@ -233,25 +235,46 @@ function getPosts(callBack) {
     const response = JSON.parse(xhr.responseText);
     callBack(response);
 }); 
-
-xhr.addEventListener('error', () => {
-  console.log('error');
+  xhr.addEventListener('error', () => {
+    console.log('error');
   });
-
-xhr.send();
-
+  xhr.send();
 }
 
-btn.addEventListener('click', e => {
+function createPost(body, callBack) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
+  xhr.addEventListener('load', () => {
+    const response = JSON.parse(xhr.responseText);
+    callBack(response);
+}); 
+  xhr.addEventListener('error', () => {
+    console.log('error');
+  });
+  xhr.send(JSON.stringify(body));
+}
+
+function renderPosts(response) {
   const fragment = document.createDocumentFragment();
-  getPosts(response => {
-    response.forEach(post => {
+  response.forEach(post => {
       const card = document.createElement('div');
-      card.textContent = post.title;
       card.classList.add('tilt');
-      console.log(card);
+      const cardBody = document.createElement('div');
+      // cardBody.classList.add('wrap');
+      const title = document.createElement('h5');
+      title.classList.add('tilt');
+      title.textContent = post.title;
+      const article = document.createElement('p');
+      article.classList.add('textus');
+      article.textContent = post.body;
+      cardBody.appendChild(title);
+      cardBody.appendChild(article);
+      card.appendChild(cardBody);
       fragment.appendChild(card);
     });
     explor.appendChild(fragment);
-  });
+}
+
+btn.addEventListener('click', e => {
+  getPosts(renderPosts);
 });
