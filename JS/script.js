@@ -224,8 +224,7 @@
 // Введение в AJAX
 const btn = document.querySelector('.btn');
 const btnGet = document.querySelector('.btn-get-posts');
-const btnAddPost = document.querySelector('.btn-add-posts');
-// const wrap = document.querySelector('.wrap');
+const btnAddPost = document.querySelector('.btn-add-posts ');
 const explor = document.querySelector('.explor');
 
 function getPosts(callBack) {
@@ -248,28 +247,33 @@ function createPost(body, callBack) {
     const response = JSON.parse(xhr.responseText);
     callBack(response);
 }); 
+xhr.setRequestHeader("Content-type", "application/json;charset=UTF8")
+
   xhr.addEventListener('error', () => {
     console.log('error');
   });
   xhr.send(JSON.stringify(body));
 }
+function cardTemplate(post) {
+    const card = document.createElement('div');
+    card.classList.add('tilt');
+    const cardBody = document.createElement('div');
+    const title = document.createElement('h5');
+    title.classList.add('tilt');
+    title.textContent = post.title;
+    const article = document.createElement('p');
+    article.classList.add('textus');
+    article.textContent = post.body;
+    cardBody.appendChild(title);
+    cardBody.appendChild(article);
+    card.appendChild(cardBody);
+    return card;
+}
 
 function renderPosts(response) {
   const fragment = document.createDocumentFragment();
   response.forEach(post => {
-      const card = document.createElement('div');
-      card.classList.add('tilt');
-      const cardBody = document.createElement('div');
-      // cardBody.classList.add('wrap');
-      const title = document.createElement('h5');
-      title.classList.add('tilt');
-      title.textContent = post.title;
-      const article = document.createElement('p');
-      article.classList.add('textus');
-      article.textContent = post.body;
-      cardBody.appendChild(title);
-      cardBody.appendChild(article);
-      card.appendChild(cardBody);
+      const card = cardTemplate(post);
       fragment.appendChild(card);
     });
     explor.appendChild(fragment);
@@ -277,4 +281,15 @@ function renderPosts(response) {
 
 btn.addEventListener('click', e => {
   getPosts(renderPosts);
+});
+btnAddPost.addEventListener('click', (e) => {
+  const newPost = {
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+  };
+  createPost(newPost, response => {
+    const card = cardTemplate(response);
+    explor.insertAdjacentElement('afterbegin', card);
+  });
 });
