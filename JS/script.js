@@ -228,16 +228,7 @@ const btnAddPost = document.querySelector('.btn-add-posts ');
 const explor = document.querySelector('.explor');
 
 function getPosts(callBack) {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
-  xhr.addEventListener('load', () => {
-    const response = JSON.parse(xhr.responseText);
-    callBack(response);
-}); 
-  xhr.addEventListener('error', () => {
-    console.log('error');
-  });
-  xhr.send();
+
 }
 
 function createPost(body, callBack) {
@@ -293,3 +284,108 @@ btnAddPost.addEventListener('click', (e) => {
     explor.insertAdjacentElement('afterbegin', card);
   });
 });
+
+function myHttpRequest({method, url} = {}, callBack) {
+  try{
+  const xhr = new XMLHttpRequest();
+  xhr.open(method, url);
+  xhr.addEventListener('load', () => {
+    if (Math.floor(xhr.status / 100) !== 2) {
+      callBack(`Error. Status code: ${xhr.status}`, xhr);
+      return; 
+    }
+    const response = JSON.parse(xhr.responseText);
+    callBack(null, response);
+}); 
+  xhr.addEventListener('error', () => {
+    callBack(`Error. Status code: ${xhr.status}`, xhr);
+  });
+  xhr.send();
+  }catch (error){
+    callBack(error);
+  }
+}
+
+// myHttpRequest(
+//   {
+//     method:'GET',
+//     url: 'https://jsonplaceholder.typicode.com/posts',
+//   },
+//   (err ,res) => {
+//     if (err) {
+//       console.log(err);
+//       return;
+//     }
+//     console.log(res);
+//   },
+// );
+
+function http() {
+  return {
+    get(url, callBack) {
+        try{
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+  xhr.addEventListener('load', () => {
+    if (Math.floor(xhr.status / 100) !== 2) {
+      callBack(`Error. Status code: ${xhr.status}`, xhr);
+      return; 
+    }
+    const response = JSON.parse(xhr.responseText);
+    callBack(null, response);
+}); 
+  xhr.addEventListener('error', () => {
+    callBack(`Error. Status code: ${xhr.status}`, xhr);
+  });
+  xhr.send();
+  }catch (error){
+    callBack(error);
+  }
+},
+
+
+post(url, body, headers, callBack) {
+      try{
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', url);
+  xhr.addEventListener('load', () => {
+    if (Math.floor(xhr.status / 100) !== 2) {
+      callBack(`Error. Status code: ${xhr.status}`, xhr);
+      return; 
+    }
+    const response = JSON.parse(xhr.responseText);
+    callBack(null, response);
+}); 
+  xhr.addEventListener('error', () => {
+    callBack(`Error. Status code: ${xhr.status}`, xhr);
+  });
+
+  if (headers) {
+    Object.entries(headers).forEach(([key, value]) => {
+      xhr.setRequestHeader(key, value);
+    })
+  }
+
+  xhr.send(JSON.stringify(body));
+  }catch (error){
+    callBack(error);
+  }
+    },
+  };
+}
+
+const myHttp = http();
+
+myHttp.post(
+  'https://jsonplaceholder.typicode.com/posts',
+  {
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+  },
+  { 'Content-Type': 'application/json',
+    'Stars': 'trigers'},
+  (err, res) => {
+    console.log(err, res);
+  },
+);
