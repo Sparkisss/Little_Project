@@ -376,16 +376,129 @@ post(url, body, headers, callBack) {
 
 const myHttp = http();
 
-myHttp.post(
-  'https://jsonplaceholder.typicode.com/posts',
-  {
-    title: 'foo',
-    body: 'bar',
-    userId: 1,
-  },
-  { 'Content-Type': 'application/json',
-    'Stars': 'trigers'},
+// myHttp.post(
+//   'https://jsonplaceholder.typicode.com/posts',
+//   {
+//     title: 'foo',
+//     body: 'bar',
+//     userId: 1,
+//   },
+//   { 'Content-Type': 'application/json',
+//     'Stars': 'trigers'},
+//   (err, res) => {
+//     console.log(err, res);
+//   },
+// );
+
+myHttp.get(
+  `https://jsonplaceholder.typicode.com/posts`,
   (err, res) => {
-    console.log(err, res);
+    if(err) {
+      console.log('error', err);
+      return;
+    }
+    myHttp.get(
+      `https://jsonplaceholder.typicode.com/comments?postId=1`,
+      (err, res) => {
+        if(err) {
+          console.log('error', err);
+          return;
+        }
+        myHttp.get(
+          `https://jsonplaceholder.typicode.com/users/1`,
+          (err, res) => {
+            if(err) {
+              console.log('error', err);
+              return;
+            }
+            // console.log('end');
+          },
+        );
+      },
+    );
   },
 );
+
+function getPost(id) {
+  return new Promise((resolve, reject) => {
+    myHttp.get(`https://jsonplaceholder.typicode.com/posts/${id}`, (err, res) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(res);
+    });
+  });
+}
+
+function getPostComments(post) {
+  const { id } = post;
+  return new Promise((resolve, reject) => {
+    myHttp.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`, (err, res) => {
+      if (err) {
+        reject(err);
+      }
+      resolve({post, comments: res});
+    });
+  });
+}
+
+function getUserCreatePost(data) {
+  const { post: {userId},
+  } = data;
+  return new Promise((resolve, reject) => {
+      myHttp.get(`https://jsonplaceholder.typicode.com/users/${userId}`, (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve({...data, user:res });
+      });
+    });
+}
+
+// getPost(51)
+// .then(post => getPostComments(post))
+// .then(data => getUserCreatePost(data))
+// .then(fulldata => console.log(fulldata))
+// .catch(err => console.log(err))
+// .finally(() => console.log('finally'));
+
+
+function getPost2(id) {
+  return new Promise((resolve, reject) => {
+    myHttp.get(`https://jsonplaceholder.typicode.com/posts/${id}`, (err, res) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(res);
+    });
+  });
+}
+
+function getPostComments2(id) {
+  return new Promise((resolve, reject) => {
+    myHttp.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`, (err, res) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(res);
+    });
+  });
+}
+
+function getUserCreatePost2(userId) {
+  return new Promise((resolve, reject) => {
+      myHttp.get(`https://jsonplaceholder.typicode.com/users/${userId}`, (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      });
+    });
+}
+
+Promise.all([
+  getPost2(1),
+  getPostComments2(1),
+  getUserCreatePost2(1),
+]).then(([post, commenys, user]) => console.log(post, commenys, user))
+.catch(err => console.log(err));
