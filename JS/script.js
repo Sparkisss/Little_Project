@@ -285,31 +285,65 @@ Promise.all([
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
+const headBtn = document.querySelectorAll('.link'),
+      parentHeadBtn = document.querySelector('.header'),
+      textInfo = document.querySelectorAll('.item__text'),
+      btnStyle = document.querySelectorAll('a');
 
-const main = document.querySelector('.main'),
-      imgSkills = main.querySelectorAll('img'),
-      head = document.querySelector('.know'),
-      menuBtn = document.querySelectorAll('.menu li');
 
-imgSkills.forEach((item, i) => {
-  if (i === 1) {
-    console.log(item);
-  }else imgSkills[i].classList.add('item__img_test');  
-});
 
-if (menuBtn[1].classList.contains('link')) {
-  console.log('d'); 
+function showUseSkills (a, b, c, d, e, f) {
+  textInfo.forEach((item, index) => {
+    if (item === textInfo[a] || item === textInfo[b] || item === textInfo[c] 
+      || item === textInfo[d] || item === textInfo[e] || item === textInfo[f]){
+
+      textInfo[index].classList.add('item__text-activ');
+
+    }    
+  });  
 };
 
-head.addEventListener('click', (event) => {
-  event.preventDefault();
-  const target = event.target;
-  
-  
-  if (target && target.classList.contains('link')) {
-    console.log('click');
-  }
+
+function delUseSkills () {
+  textInfo.forEach((item, index) => {
+    textInfo[index].classList.remove('item__text-activ');
+  });
+};
+
+
+
+headBtn.forEach((item, i) => {
+  headBtn[i].addEventListener('click', (event) => {    
+    if (i === 0) {     
+      delUseSkills (); 
+      showUseSkills (0, 1, 2,3);
+    }else if (i === 1) {
+      delUseSkills (); 
+      showUseSkills (3,4);
+    }else if (i === 2) {
+      delUseSkills (); 
+      showUseSkills (1,3,4,5);
+    }else if (i === 3) {
+      delUseSkills (); 
+      showUseSkills (4);
+    }else if (i === 4) {
+      delUseSkills (); 
+      showUseSkills (1,2,3,4,5);
+    }    
+  });
 });
+
+
+parentHeadBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  const target = event.target;  
+  
+  
+});
+      
+// showUseSkills (0, 2, 4, 5);
+// console.dir(textInfo);
+
 
 
 
