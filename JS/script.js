@@ -282,15 +282,12 @@ Promise.all([
 ]).then(([post, commenys, user]) => console.log(post, commenys, user))
 .catch(err => console.log(err));
 
-///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////Отработка нажатия кнопки//////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
 const headBtn = document.querySelectorAll('.link'),
       parentHeadBtn = document.querySelector('.header'),
       textInfo = document.querySelectorAll('.item__text'),
       btnStyle = document.querySelectorAll('a');
-
-
 
 function showUseSkills (a, b, c, d, e, f) {
   textInfo.forEach((item, index) => {
@@ -303,14 +300,11 @@ function showUseSkills (a, b, c, d, e, f) {
   });  
 };
 
-
 function delUseSkills () {
   textInfo.forEach((item, index) => {
     textInfo[index].classList.remove('item__text-activ');
   });
 };
-
-
 
 headBtn.forEach((item, i) => {
   headBtn[i].addEventListener('click', (event) => {    
@@ -333,19 +327,65 @@ headBtn.forEach((item, i) => {
   });
 });
 
-
 parentHeadBtn.addEventListener('click', (event) => {
   event.preventDefault();
   const target = event.target;  
-  
+  if (target && target.tagName === 'SPAN') {
+    console.log('fdd');
+  } 
   
 });
       
-// showUseSkills (0, 2, 4, 5);
-// console.dir(textInfo);
+/////////////////////////////////////Timer//////////////////////////////////////////
 
+const howMatchTime = '2023-06-11';
 
+function getFullTime(fullTime) {
+  const t = Date.parse(new Date()) - Date.parse(fullTime),
+        days = Math.floor(t/ (1000 * 60 * 60 * 24)),
+        hours = Math.floor((t / (1000 * 60 * 60) % 24)),
+        minutes = Math.floor((t / 1000 / 60) % 60),
+        seconds = Math.floor((t / 1000) % 60);
 
+  return {
+    total: t,
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds,
+  };
+}
+
+function getZero(num) {
+  if (num >= 0 && num < 10) return `0${num}`;
+  else return num;
+}
+
+function setClock(selector, fullTime) {
+  const timer = document.querySelector(selector),
+        days = timer.querySelector('#days'),
+        hours = timer.querySelector('#hours'),
+        minutes = timer.querySelector('#minutes'),
+        seconds = timer.querySelector('#seconds'),
+        timeInterval = setInterval(updateClock, 1000);
+
+  updateClock(); // убираем мигание при старте работы таймера, т. е. запускаем таймер сразу а не ждем секунду
+
+  function updateClock() {
+    const t = getFullTime(fullTime);
+
+    days.innerHTML = getZero(t.days);
+    hours.innerHTML = getZero(t.hours);
+    minutes.innerHTML = getZero(t.minutes);
+    seconds.innerHTML = getZero(t.seconds);
+
+    if (t.total <= 0) {
+      clearInterval(timeInterval);
+    }
+  }
+}
+
+setClock('.timer', howMatchTime);
 
 
 

@@ -8,11 +8,8 @@
 html,
 body{
   height: 100%;
-  font-family: "Ubuntu";
-  background-color: rgb(125, 127, 130);
-  color: aliceblue;
+  font-family: "Ubuntu";  
 }
-
 
 button {
   margin: 20px;
@@ -63,7 +60,8 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #584c58;
+  /* background-color: #23772391; */
+  background: linear-gradient(90deg, rgba(49,101,6,0.9556197478991597) 0%, rgba(55,156,58,0.36738445378151263) 44%, rgba(119,136,149,1) 100%);
   min-width: 100%;
   z-index: 5;
   justify-content: space-between;
@@ -266,5 +264,29 @@ h1{
 
 .item__text-activ {
   color: rgb(131, 53, 53);
+  text-shadow: 0px 0px 6px #000;
 }
 
+.timer__text {
+  text-align: center;
+  font-size: 24px;
+  color:#212b31;
+  padding: 0 0 50px 0;
+}
+.timer {
+  display: flex;
+  justify-content: space-between;  
+  font-size: 22px;  
+}
+.timer__block {
+  flex: 0 1 18%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #0000009d;
+  min-height: 100px;
+  background-color: #9c9e9ca4;
+  border-radius: 7px;
+  box-shadow: 0px 5px 5px #000;
+  color: #fff;
+}
