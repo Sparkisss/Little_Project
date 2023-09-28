@@ -15,20 +15,21 @@ button {
   margin: 20px;
   height: 30px;
   width: 50px;
-  border: 2px solid #bb2c2c;
+  border: 2px solid #1a1717;
   border-radius: 8px;
-  background-color: #1e3763;
+  background-color: #fff;
 }
 .btn-danger {
   height: 75px;
   width: 75px;
 }
 .wrap {
+  border-radius: 8px;
   text-align: center;
   height: 100%;
   width: 100%;
   padding-top: 10px;
-  background-color: #cac852;
+  background: linear-gradient(90deg, rgba(49,101,6,0.9556197478991597) 0%, rgba(55,156,58,0.36738445378151263) 44%, rgba(119,136,149,1) 100%);
 }
 .tilt {
   /* border: 3px solid #000; */
@@ -59,9 +60,8 @@ button {
   align-items: center;
   position: fixed;
   top: 0;
-  left: 0;
-  /* background-color: #23772391; */
-  background: linear-gradient(90deg, rgba(49,101,6,0.9556197478991597) 0%, rgba(55,156,58,0.36738445378151263) 44%, rgba(119,136,149,1) 100%);
+  left: 0;  
+  background: linear-gradient(90deg, rgba(125,130,120,0.9556197478991597) 0%, rgba(156,167,157,0.36738445378151263) 50%, rgba(72,109,138,1) 100%);
   min-width: 100%;
   z-index: 5;
   justify-content: space-between;
@@ -209,9 +209,17 @@ h1{
   text-align: center;
 }
 .footer {
+  display: flex;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
   min-height: 30px;
   text-align: center;
   font-style: italic;
+  background: linear-gradient(90deg, rgba(125,130,120,0.9556197478991597) 0%, rgba(156,167,157,0.36738445378151263) 50%, rgba(72,109,138,1) 100%);  
 }
 
 .flex__row {
@@ -285,8 +293,8 @@ h1{
   align-items: center;
   border: 3px solid #0000009d;
   min-height: 100px;
-  background-color: #9c9e9ca4;
+  background: linear-gradient(90deg, rgba(125,130,120,0.9556197478991597) 0%, rgba(156,167,157,0.36738445378151263) 50%, rgba(72,109,138,1) 100%); 
   border-radius: 7px;
   box-shadow: 0px 5px 5px #000;
-  color: #fff;
+  color: #2c2828;
 }

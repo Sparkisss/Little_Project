@@ -387,6 +387,26 @@ function setClock(selector, fullTime) {
 
 setClock('.timer', howMatchTime);
 
+/////////////////////////////////////Map//////////////////////////////////////////
+
+const shops = [
+  {rice: 500},
+  {oil: 200},
+  {bread: 50},
+];
+
+const budget = [5000, 15000, 25000];
+const map = new Map();
+
+shops.forEach((shop, i) => {
+  map.set(shop, budget[i]);
+});
+
+for ( let [shop, price] of map.entries()) {
+  console.log(price,shop);
+}
+
+
 
 
 
