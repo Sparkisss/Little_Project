@@ -287,7 +287,8 @@ Promise.all([
 const headBtn = document.querySelectorAll('.link'),
       parentHeadBtn = document.querySelector('.header'),
       textInfo = document.querySelectorAll('.item__text'),
-      btnStyle = document.querySelectorAll('a');
+      btnStyle = document.querySelector('a');
+      
 
 function showUseSkills (a, b, c, d, e, f) {
   textInfo.forEach((item, index) => {
@@ -327,9 +328,14 @@ headBtn.forEach((item, i) => {
   });
 });
 
+btnStyle.addEventListener('click', (event) => {
+  delUseSkills ();
+});
+
 parentHeadBtn.addEventListener('click', (event) => {
   event.preventDefault();
   const target = event.target;  
+
   if (target && target.tagName === 'SPAN') {
     console.log('fdd');
   } 
@@ -387,7 +393,7 @@ function setClock(selector, fullTime) {
 
 setClock('.timer', howMatchTime);
 
-/////////////////////////////////////Map//////////////////////////////////////////
+/////////////////////////////////////Map and Set//////////////////////////////////////////
 
 const shops = [
   {rice: 500},
@@ -403,8 +409,38 @@ shops.forEach((shop, i) => {
 });
 
 for ( let [shop, price] of map.entries()) {
-  console.log(price,shop);
+  // console.log(price,shop);
 }
+
+const arr = [1, 1, 2, 2, 4, 5, 6, 5];
+
+const set = new Set(arr);
+set.add(3);
+set.delete(1);
+
+set.forEach((value, valueAgaing, set) => {
+  // console.log(value, valueAgaing);
+})
+
+/////////////////////////////////////Дескрипторы//////////////////////////////////////////
+
+const user = {
+  name: 'Tigor',
+  surname: 'Mister',
+  birthday: '20/04/1999',
+  showMyPublicData: function() {
+    console.log(`${this.name} ${this.surname}`);
+  }
+}
+
+Object.defineProperty(user, 'name', {writable: false});
+Object.defineProperty(user, 'gender', {value: 'male'});
+// Object.defineProperty(user, 'brithday', {value: prompt('Date?'), enumerable: true, configurable: true});
+console.log(Object.getOwnPropertyDescriptor(user, 'brithday'));
+console.log(user);
+
+
+
 
 
 
