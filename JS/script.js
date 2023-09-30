@@ -442,8 +442,33 @@ console.log(user);
 
 
 
+//////////////////////////////////Part 3 Task 1///////////////////////////////////////
+
+function amountOfPages(summary){
+  let result = '';
+  let n = 0;
+
+  for (let i = 1; i <= summary; i++) { 
+    result += i;    
+    if (result.length === summary) {
+      
+      n = i;
+      break;
+    }
+  }
+
+  return n;
+}
+
+let result = amountOfPages(25);
+console.dir(result);
+
+//////////////////////////////////Окна и работа с ними///////////////////////////////////////
+
+console.log(document);
 
 
 
 
 });
+
