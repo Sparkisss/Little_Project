@@ -18,7 +18,7 @@
 
     <header class="header">
       <a href="#" class="logo">
-        <img src="./img/logo/spark.svg" width="70px" height="60px" alt="">
+        <img data-modal src="./img/logo/spark.svg" width="70px" height="60px" alt="">
       </a>
       <div class="menu">
         <ul class="menu__table">
@@ -30,9 +30,10 @@
         </ul>
       </div>
       <div class="contacts">
-        <a class="a" href="#">Telegram</a>
-        <a href="#">LinKedin</a>
-        <a href="#">+375333038844</a>
+        <a class="phone" class="a" href="#">
+          <img data-modal src="./img/icons/phone.svg" width="70px" height="60px" alt="">
+        </a>
+        
       </div>
     </header>
 
@@ -156,6 +157,19 @@
   <footer class="footer">
     Mr. Sparki 2023 year. I want to be a developer.
   </footer>
+  <div class="modal">
+    <div class="modal__dialog">
+      <div class="modal__content">
+        <form action="#">
+          <div data-close class="modal__close">x</div>
+          <div class="modal__title">We will contact you!</div>
+          <input required placeholder="You name" name="name" type="text" class="modal__input">
+          <input required placeholder="You phone number" name="phone" type="text" class="modal__input">
+          <button class="btn btn_dark btn_min">Call me back</button>
+        </form>
+      </div>
+    </div>
+  </div>
   <script src="./JS/script.js"></script>
 </body>
 

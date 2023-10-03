@@ -70,23 +70,26 @@ button {
 .logo {
   margin: 0 50px 0 15px;
 }
-.logo img{
+.logo img,
+.phone img{
   border-radius: 50%;
   padding: 5px 5px;
 }
 
-.logo img:hover {
+.logo img:hover,
+.phone img:hover {
   position: relative;
   box-shadow: 0 4px 0 0 #000;
   top: -1px;
-  transition: all 0.3s ease 0s;
+  transition: all 0.1s ease 0s;
 }
 
-.logo img:active {
+.logo img:active,
+.phone img:active {
   background-color: #ff3d00;
   box-shadow: 0 1px 0 0 #000;
   top: 0px;
-  transition: all 0.2s ease 0s;
+  transition: all 0.1s ease 0s;
 }
 
 .menu {
@@ -126,32 +129,11 @@ button {
   top: 0px;
   transition: all 0.2s ease 0s;
 }
-.contacts {
-  font-size: 20px;
-  line-height: 24px;
+.contacts {  
   margin: 0 30px 0 0;
 }
-.contacts a {
-  margin: 0 20px 0 0;
-  padding: 0 10px;
-  color: #383230;
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: 10px;
-  box-shadow: 0 2px 0 0 #000;
-}
-.contacts a:hover {
-  background-color: #cac852;
-  box-shadow: 0 4px 0 0 #000;
-  top: -2px;
-  transition: all 0.3s ease 0s;
-}
 
-.contacts a:active {
-  box-shadow: 0 1px 0 0 #000;
-  top: 0px;
-  transition: all 0.2s ease 0s;
-}
+
 
 h1{
   font-size: 40px;
@@ -283,6 +265,7 @@ h1{
   justify-content: space-between;  
   font-size: 22px;  
 }
+
 .timer__block {
   /* flex: 0 1 18%; */
   border-radius: 7px;
@@ -296,3 +279,74 @@ h1{
   box-shadow: 9px 9px 9px #000;
   color: #2c2828;
 }
+
+
+.modal {  
+  display: none;  
+  width: 100%;
+}
+.modal__dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(121,148,127,0.98) 0%, rgba(148,187,233,0.99) 100%);
+}
+.modal__content {
+  border: 1px solid #000;
+  width: 28.125rem;
+  height: 21.875rem;
+}
+form {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;  
+}
+.modal__close {
+  position: absolute;
+  padding: 0.313rem;
+  top: 0.625rem;
+  right: 0.625rem;
+  cursor: pointer;
+  border: 1px solid #000;  
+  background: #fff;
+  border-radius: 3px;
+}
+.modal__title {
+  text-align: center;
+  padding: 35px 0;
+  font-size: 24px;
+}
+.modal__input {
+  margin: 0 auto;
+  width: 280px;
+  height: 50px;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0,.2);
+  font-size: 18px;
+  text-align: center;  
+  margin-bottom: 25px;
+  flex: 1 1 auto;
+  border-radius: 8px;
+}
+.btn {
+  margin: 0 auto;
+  width: 280px;
+  height: 50px;
+  background: #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0,.2);
+  font-size: 18px;
+  text-align: center;  
+  margin-bottom: 25px;
+  color:#fff;
+}
+ 
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+

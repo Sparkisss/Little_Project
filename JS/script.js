@@ -439,9 +439,6 @@ Object.defineProperty(user, 'gender', {value: 'male'});
 console.log(Object.getOwnPropertyDescriptor(user, 'brithday'));
 console.log(user);
 
-
-
-
 //////////////////////////////////Part 3 Task 1///////////////////////////////////////
 
 function amountOfPages(summary){
@@ -461,11 +458,48 @@ function amountOfPages(summary){
 }
 
 let result = amountOfPages(25);
-console.dir(result);
+// console.dir(result);
 
-//////////////////////////////////Окна и работа с ними///////////////////////////////////////
+//////////////////////////////////Modal window///////////////////////////////////////
 
-console.log(document);
+const modalBtn = document.querySelectorAll('[data-modal]'),
+      modalWindow = document.querySelector('.modal'),
+      modalClose = document.querySelector('[data-close]');
+
+function closeModal() {
+  modalWindow.classList.remove('show');
+  modalWindow.classList.add('hidden');
+  document.body.style.overflow = '';
+};
+
+function openModal() {
+  modalWindow.classList.add('show');
+  modalWindow.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  clearInterval(modalTimerId);
+}
+
+modalBtn.forEach(btn => {
+  btn.addEventListener('click', openModal);
+});
+
+modalClose.addEventListener('click', closeModal);
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Escape' && modalWindow.classList.contains('show')) {
+    closeModal();
+  }
+});
+
+const modalTimerId = setTimeout(openModal, 10000);
+
+function showModalByScroll() {
+  if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
+    openModal();
+    window.removeEventListener('scroll', showModalByScroll);
+  }
+}
+
+window.addEventListener('scroll', showModalByScroll);
 
 
 
