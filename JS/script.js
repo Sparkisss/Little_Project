@@ -436,8 +436,8 @@ const user = {
 Object.defineProperty(user, 'name', {writable: false});
 Object.defineProperty(user, 'gender', {value: 'male'});
 // Object.defineProperty(user, 'brithday', {value: prompt('Date?'), enumerable: true, configurable: true});
-console.log(Object.getOwnPropertyDescriptor(user, 'brithday'));
-console.log(user);
+// console.log(Object.getOwnPropertyDescriptor(user, 'brithday'));
+// console.log(user);
 
 //////////////////////////////////Part 3 Task 1///////////////////////////////////////
 
@@ -500,6 +500,39 @@ function showModalByScroll() {
 }
 
 window.addEventListener('scroll', showModalByScroll);
+
+//////////////////////////////////Modal window///////////////////////////////////////
+
+// function showThis(a, b) {
+//   console.log(this);
+//   function sum() {
+//     console.log(this);
+//     return a + b;
+//   }
+//   console.log(sum());
+// }
+
+// showThis(4, 5);
+
+// const obj = {
+//   a: 20,
+//   b: 15,
+//   sum: function() {
+//     console.log(this);
+//   }
+// };
+
+// obj.sum();
+
+function sayName() {
+  console.log(this);
+  console.log(this.name);
+}
+
+
+
+
+
 
 
 
