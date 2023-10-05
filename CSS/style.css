@@ -201,7 +201,8 @@ h1{
   background: linear-gradient(90deg, rgba(125,130,120,0.9556197478991597) 0%, rgba(156,167,157,0.36738445378151263) 50%, rgba(72,109,138,1) 100%);  
 }
 
-.flex__row {
+.flex__row,
+.flex__row-two {
   display: flex;
   margin: 50px -15px;
 }
