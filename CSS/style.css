@@ -19,18 +19,7 @@ button {
   border-radius: 8px;
   background-color: #fff;
 }
-.btn-danger {
-  height: 75px;
-  width: 75px;
-}
-.wrap {
-  border-radius: 8px;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  padding-top: 10px;
-  background: linear-gradient(90deg, rgba(49,101,6,0.9556197478991597) 0%, rgba(55,156,58,0.36738445378151263) 44%, rgba(119,136,149,1) 100%);
-}
+
 .tilt {
   /* border: 3px solid #000; */
   text-align: center;
@@ -195,7 +184,7 @@ h1{
   justify-content: center;
   align-items: center;
   min-width: 100%;
-  min-height: 30px;
+  min-height: 7%;
   text-align: center;
   font-style: italic;
   background: linear-gradient(90deg, rgba(125,130,120,0.9556197478991597) 0%, rgba(156,167,157,0.36738445378151263) 50%, rgba(72,109,138,1) 100%);  
@@ -298,7 +287,8 @@ h1{
   width: 28.125rem;
   height: 21.875rem;
 }
-form {
+form,
+.wrap {
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -319,7 +309,8 @@ form {
   padding: 35px 0;
   font-size: 24px;
 }
-.modal__input {
+.modal__input,
+.wrap__input{
   margin: 0 auto;
   width: 280px;
   height: 50px;
