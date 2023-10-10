@@ -111,8 +111,7 @@ setClock('.timer', howMatchTime);
 //////////////////////////////////Modal window///////////////////////////////////////
 
 const modalBtn = document.querySelectorAll('[data-modal]'),
-      modalWindow = document.querySelector('.modal'),
-      modalClose = document.querySelector('[data-close]');
+      modalWindow = document.querySelector('.modal');
 
 function closeModal() {
   modalWindow.classList.remove('show');
@@ -126,12 +125,16 @@ function openModal() {
   document.body.style.overflow = 'hidden';
   // clearInterval(modalTimerId);
 }
+modalWindow.addEventListener('click', (e) => {
+  if (e.target === modalWindow || e.target.getAttribute('data-close') == "") {
+    closeModal();
+  }
+});
 
 modalBtn.forEach(btn => {
   btn.addEventListener('click', openModal);
 });
 
-modalClose.addEventListener('click', closeModal);
 document.addEventListener('keydown', (event) => {
   if (event.code === 'Escape' && modalWindow.classList.contains('show')) {
     closeModal();
@@ -186,8 +189,7 @@ new MenuCard(
   'The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser. It is often assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.',
   "./img/HTML.png",
   '.main .flex__row',
-  'flex__item',
-  'item__text-activ',
+  'flex__item',  
 ).render();
 
 new MenuCard(
@@ -196,7 +198,7 @@ new MenuCard(
   "./img/CSS.jpg",
   '.main .flex__row',
   'flex__item',  
-
+  'item__text-activ',
 ).render();
 
 new MenuCard(
@@ -233,21 +235,20 @@ new MenuCard(
   'flex__item',
 ).render();
 
-
+//////////////////////////////////Get request///////////////////////////////////////
 const inputRub = document.querySelector('#rub'),
       inputUsd = document.querySelector('#usd');
-
 
 inputRub.addEventListener('input', () => {
   const request = new XMLHttpRequest();
   
-  request.open('GET', 'js/current1.json');
+  request.open('GET', 'js/current.json');
   request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   request.send();
 
   request.addEventListener('readystatechange', () => {
     if (request.readyState === 4 && request.status === 200) {
-      console.log(request.response);
+      // console.log(request.response);
       const data = JSON.parse(request.response);
       inputUsd.value = (+inputRub.value / data.current.usd).toFixed(2);
     }else {
@@ -255,13 +256,107 @@ inputRub.addEventListener('input', () => {
     }
   });
 });
+//////////////////////////////////Post request///////////////////////////////////////
 
+const forms = document.querySelectorAll('form');
 
+const message = {
+  loading: 'Loading',
+  success: 'We will call you.',
+  failure: 'Something went wrong',
+};
 
+forms.forEach(item => {
+  postData(item);  
+});
 
+function postData(form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
+    let statusMessage = document.createElement('div');
+    statusMessage.classList.add('btn');
+    statusMessage.textContent = message.loading;
+    form.appendChild(statusMessage);
 
+    const request = new XMLHttpRequest();
+    request.open('POST', 'server.php');
+    request.setRequestHeader('Content-tupe', 'application/json', 'charset=uft-8');
+    const formData = new FormData(form);
 
+    const object = {};
+    formData.forEach(function(value,key) {
+      object[key] = value;
+    });
+
+    const json = JSON.stringify(object);
+    request.send(json);
+    request.addEventListener('load', () => {
+      if (request.status === 200) {
+        showThanksModal(message.success);
+        form.reset();        
+        statusMessage.remove();        
+      }else{
+       showThanksModal(message.failure);
+      }
+    });
+  });
+}
+
+function showThanksModal(message) {
+  const prevModalDialog = document.querySelector('.modal__dialog');
+
+  prevModalDialog.classList.add('hidden');
+  openModal();
+
+  const thanksModal = document.createElement('div');
+  thanksModal.classList.add('modal__dialog');
+  thanksModal.innerHTML = `
+    <div class="modal__content">
+      <div class="modal__close" data-close>x</div>
+      <div class="modal__title">${message}</div>
+    </div>      
+  `;
+  document.querySelector('.modal').append(thanksModal);
+  setTimeout(() => {
+    thanksModal.remove();
+    prevModalDialog.classList.add('show');
+    prevModalDialog.classList.remove('hidden');
+    closeModal();
+  }, 4000);
+}
+
+//////////////////////////////////Poromese///////////////////////////////////////
+
+ console.log('Data request...');
+
+ const req = new Promise(function(resolve, reject) {
+  setTimeout(() => {
+    console.log('Data handing...');
+
+    const product = {
+      name: 'TV',
+      price: 2000,
+    };
+
+    resolve(product);
+  }, 2000);
+ });
+
+ req.then((product) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      product.status = 'order';
+      resolve(product);
+    }, 2000);
+  });    
+ }).then(data => {
+  data.modity = true;
+  return data;
+  
+}).then((data) => {
+  console.log(data);
+}); 
 
 
 
