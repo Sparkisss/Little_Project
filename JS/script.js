@@ -263,7 +263,7 @@ const forms = document.querySelectorAll('form');
 const message = {
   loading: 'Loading',
   success: 'We will call you.',
-  failure: 'Something went wrong',
+  failure: 'Something went wrong...',
 };
 
 forms.forEach(item => {
@@ -277,11 +277,8 @@ function postData(form) {
     let statusMessage = document.createElement('div');
     statusMessage.classList.add('btn');
     statusMessage.textContent = message.loading;
-    form.appendChild(statusMessage);
+    form.appendChild(statusMessage);    
 
-    const request = new XMLHttpRequest();
-    request.open('POST', 'server.php');
-    request.setRequestHeader('Content-tupe', 'application/json', 'charset=uft-8');
     const formData = new FormData(form);
 
     const object = {};
@@ -289,17 +286,23 @@ function postData(form) {
       object[key] = value;
     });
 
-    const json = JSON.stringify(object);
-    request.send(json);
-    request.addEventListener('load', () => {
-      if (request.status === 200) {
-        showThanksModal(message.success);
-        form.reset();        
-        statusMessage.remove();        
-      }else{
-       showThanksModal(message.failure);
-      }
-    });
+    fetch('server.php', {
+      method: "POST",
+      headers: {
+        'Content-tupe': 'application/json'
+      },
+      body: JSON.stringify(object)
+    })
+    .then(data => {
+      console.log(data);
+      showThanksModal(message.success);
+      statusMessage.remove();
+    }).catch(() => {
+      showThanksModal(message.failure);
+    }).finally(() => {
+      form.reset();
+    });    
+    
   });
 }
 
@@ -326,51 +329,55 @@ function showThanksModal(message) {
   }, 4000);
 }
 
-//////////////////////////////////Poromese///////////////////////////////////////
+//////////////////////////////////Slider///////////////////////////////////////
 
- console.log('Data request...');
+const slideItem = document.querySelectorAll('.main__img'),
+      prevSlide = document.querySelector('.prev__item'),
+      nextSlide = document.querySelector('.next__item'),
+      countCurrent = document.querySelector('.count__current'),
+      countTotal = document.querySelector('.count__total');
 
- const req = new Promise(function(resolve, reject) {
-  setTimeout(() => {
-    console.log('Data handing...');
+let indexSlide = 0;
 
-    const product = {
-      name: 'TV',
-      price: 2000,
-    };
+if (slideItem > 10) {
+  countTotal.textContent = `/${slideItem.length}`;
+} else {
+  countTotal.textContent = `/0${slideItem.length}`;
+}
 
-    resolve(product);
-  }, 2000);
- });
+  slideItem.forEach(slide => {
+    slide.classList.add("hidden");
+  });
+  showSlide(indexSlide);
 
- req.then((product) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      product.status = 'order';
-      resolve(product);
-    }, 2000);
-  });    
- }).then(data => {
-  data.modity = true;
-  return data;
-  
-}).then((data) => {
-  console.log(data);
-}); 
+function showSlide(n) {  
+  slideItem[indexSlide].classList.remove("hidden");
+  if (slideItem > 10) {
+    countCurrent.textContent = `${indexSlide + 1}`;
+  } else countCurrent.textContent = `0${indexSlide + 1}`;
+}
 
-//////////////////////////////////Fetch API///////////////////////////////////////
+function hiddenSlide(n) {
+  slideItem[indexSlide].classList.add("hidden");
+}
 
-fetch('https://jsonplaceholder.typicode.com/posts', {
-  method: "POST",
-  body: JSON.stringify({name: 'Alex'}),
-  headers: {
-    'Content-type': 'application/json'
-  }
-})
-      .then(response => response.json())
-      .then(json => console.log(json));
+prevSlide.addEventListener('click', (e) => {
+  hiddenSlide(indexSlide);
+  indexSlide++;
+  if (indexSlide >= slideItem.length) {
+    indexSlide = 0;
+  }  
+  showSlide(indexSlide);  
+});
 
-
+nextSlide.addEventListener('click', (e) => {
+  hiddenSlide(indexSlide);  
+  indexSlide--;
+  if (indexSlide < 0) {
+    indexSlide = slideItem.length - 1;
+  }  
+  showSlide(indexSlide);
+});
 
 
 
