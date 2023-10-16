@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 const headBtn = document.querySelectorAll('.link'),
       parentHeadBtn = document.querySelector('.header'),
       textInfo = document.querySelectorAll('.item__text'),
+      changeStyle = document.querySelector('.main__container'),
       btnStyle = document.querySelector('a');
       
 
@@ -49,8 +50,18 @@ headBtn.forEach((item, i) => {
   });
 });
 
-btnStyle.addEventListener('click', (event) => {
-  delUseSkills ();
+if (localStorage.getItem('bg') === 'changed') {  
+  changeStyle.classList.add('main__style');
+}
+
+btnStyle.addEventListener('click', () => {
+  if (localStorage.getItem('bg') === 'changed') {
+    localStorage.removeItem('bg');
+    changeStyle.classList.remove('main__style');
+  }else {
+    localStorage.setItem('bg', 'changed');
+    changeStyle.classList.add('main__style');
+  }
 });
 
 parentHeadBtn.addEventListener('click', (event) => {
@@ -459,8 +470,6 @@ let slideIndex = 1;
         });
       });
 
-
-      
 
 
 

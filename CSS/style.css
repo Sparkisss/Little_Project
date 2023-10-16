@@ -8,7 +8,11 @@
 html,
 body{
   height: 100%;
-  font-family: "Ubuntu";  
+  font-family: "Ubuntu";    
+}
+
+.main__style{
+  background: radial-gradient(circle, rgba(156,158,170,0.896796218487395) 0%, rgba(40,52,180,0.6250875350140056) 100%);
 }
 
 button {
@@ -179,6 +183,44 @@ h1{
   color: #bb2c2c;
   text-align: center;
 }
+
+
+.slider__menu {
+  display: flex;
+  justify-content: flex-end;
+}
+.prev__item {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-left: 50px solid rgba(34, 107, 170, 0.795);
+  border-bottom: 15px solid transparent;
+  cursor: pointer;
+  margin-left: 10px;  
+}
+.count__total {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.count__current {
+  font-size: 26px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.next__item {  
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-right: 50px solid rgba(34, 107, 170, 0.795);
+  border-bottom: 15px solid transparent;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+
 .footer {
   display: flex; 
   justify-content: center;
@@ -254,6 +296,7 @@ h1{
   display: flex;
   justify-content: space-between;  
   font-size: 22px;  
+  margin-bottom: 50px;
 }
 
 .timer__block {
@@ -342,3 +385,38 @@ form,
   display: none;
 }
 
+.slides {
+  display: flex;
+  transition: 0.9 all;
+}
+
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+  padding-bottom: 50px;
+}
+
+.dot {
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 30px;
+  height: 6px;
+  margin-right: 3px;
+  margin-left: 3px;
+  cursor: pointer;
+  background-color: #2e2f88c7;
+  background-clip: padding-box;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: .5;
+  transition: opacity .6s ease;
+  
+}
