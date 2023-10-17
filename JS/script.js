@@ -473,7 +473,54 @@ let slideIndex = 1;
         });
       });
 
-//////////////////////////////////Регулярные выражения///////////////////////////////////////
+//////////////////////////////////Игкапсуляция///////////////////////////////////////
+
+class User {
+  constructor(name, age) {
+    // this._name = name;
+    this._age = age;
+  }
+  #name = "Tigor";
+
+  say() {
+    console.log(`Name: ${this.name}, age: ${this._age}`);
+  }
+
+  get name() {
+    return this._name
+  }
+
+  set name(name) {
+    if (typeof name === 'string' && name.length > 0 && name.length < 18) {
+      this._name = name;
+    } else {
+      console.log("name error!");
+    }
+  }
+
+  get age() {
+    return this._age;
+  }
+
+  set age(age) {
+    if (typeof age === 'number' && age > 0 && age < 110) {
+      this._age = age;
+    } else {
+      console.log('Error!');
+    }
+  }
+}
+
+const ivan = new User('Ivan', 27);
+console.log(ivan.age);
+ivan.age = 99;
+console.log(ivan.age);
+ivan.say();
+ivan.name = 1+'sd';
+console.log(ivan.name);
+
+
+
 
 
 
