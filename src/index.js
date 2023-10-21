@@ -519,6 +519,21 @@ ivan.say();
 ivan.name = 1+'sd';
 console.log(ivan.name);
 
+//////////////////////////////////функция генератор///////////////////////////////////////
+function* generator() {
+  yield 'I';
+  yield 'g';
+  yield 'o';
+  yield 'r';
+  yield 'o';
+  yield 'k';
+}
+
+const str = generator();
+
+console.log(str.next());
+console.log(str.next());
+
 //////////////////////////////////WebPack///////////////////////////////////////
 
 const myModule = require('../js/main');
